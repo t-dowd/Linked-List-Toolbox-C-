@@ -1,7 +1,7 @@
 #include <exception>
 #include <iostream>
 #include "Node.hpp"
-#include "LinkedList.cpp"
+#include "LinkedList.hpp"
 // Gtest New Stuff
 #include <sstream>
 
