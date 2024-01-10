@@ -1,3 +1,7 @@
+#ifndef LL_HPP
+#define LL_HPP
+
+
 #include <exception>
 #include <iostream>
 #include "Node.hpp"
@@ -288,7 +292,7 @@ void LinkedList<T>::set(const int POS, const T VALUE){
 template <class T>
 void LinkedList<T>::append(const T VALUE){
     Node<T>* pNewNode = MakeNodeForValue(VALUE);
-    mpTail->pNext = pNewNode;
+    mpTail->pNext = pNewNode;                                           /// Seg Fault Here somehow
     pNewNode->pPrev = mpTail;
     //set tail
     mpTail = pNewNode;
@@ -417,3 +421,8 @@ template <class T>
 bool LinkedList<T>::isEmpty(){
     return true;
 }
+template <class T>
+int LinkedList<T>::size(){
+    return mSize;
+}
+#endif
