@@ -84,13 +84,21 @@ public:
     Node<T>* get_head();
     
     /**
-     * @brief Returns value at given position.
+     * @brief Returns object at given position.
      * 
      * @param POS Position of value to be returned
-     * @return Value at position
+     * @return Object at position
      */
     T get(const int POS) const;
     
+    /**
+     * @brief Finds the object in the linked list, and returs the index of the object
+     *        ! Will return -1 if it is unable to be found !
+     * @param TARGET desired object
+     * @return the index of object
+     */
+    int find(const T TARGET);
+
     /**
      * @brief 
      * 
@@ -99,6 +107,7 @@ public:
      */
     void set(const int POS, const T VALUE);
     
+
     void append(const T value);
 
     /**
@@ -115,21 +124,13 @@ public:
      * @param POS 
      */
     void remove(const int POS);
-    
-    /**
-     * @brief 
-     * 
-     * @param TARGET 
-     * @return int 
-     */
-    int find(const T TARGET);
-    
+        
     /**
      * @brief Finds max value in list.
      * 
      * @return Max out of list
      */
-    T max();
+    T max(){};
     
     /**
      * @brief Finds min value in list.
@@ -151,13 +152,14 @@ public:
      * @return false 
      */
     bool isEmpty();
-
+    /**
+     * @brief Returns the allocated size of the Linked List
+     * returns an int because who the fuck uses unisgned ints anymore
+     * 
+     * @return int 
+     */
     int size();
 };
-
-
-
-
 template <class T>
 LinkedList<T>::LinkedList(){
     mSize = 0;
@@ -416,7 +418,6 @@ void LinkedList<T>::remove(const int POS){
         }
     }
 }
-
 template <class T>
 bool LinkedList<T>::isEmpty(){
     return true;
@@ -424,5 +425,20 @@ bool LinkedList<T>::isEmpty(){
 template <class T>
 int LinkedList<T>::size(){
     return mSize;
+}
+template <class T>
+int LinkedList<T>::find(const T VALUE){
+
+    Node<T>* pNewNode = MakeNodeForValue(VALUE);
+    for (unsigned int i = 0; i < mSize; i++){
+        if (pNewNode->value == VALUE){
+            return i;
+        }
+        else{
+            pNewNode = pNewNode->pNext;
+        }
+    }
+    return -1;
+
 }
 #endif

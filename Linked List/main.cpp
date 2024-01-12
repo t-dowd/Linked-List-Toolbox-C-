@@ -6,5 +6,5 @@
 #include <sstream>
 
 int main(){
-    
+    std::cout<<"youve successfully ran main" <<std::endl;
 }
