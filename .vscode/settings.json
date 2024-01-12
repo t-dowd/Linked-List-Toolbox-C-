@@ -3,6 +3,15 @@
     "files.associations": {
         "string": "cpp",
         "*.tcc": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "bit": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp",
+        "string_view": "cpp",
+        "random": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "numeric": "cpp",
+        "semaphore": "cpp"
     }
 }
