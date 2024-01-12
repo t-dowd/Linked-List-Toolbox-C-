@@ -25,6 +25,14 @@ struct Node {
      * 
      */
     Node<T> *pPrev;
+    // Staged Copy assignmet Op for Node.cpp in case it is needed.
+    // // Copy assignment operator
+    // Node<T>& operator=(const Node<T>& other) {
+    //     if (this != &other) {
+    //         value = other.value;
+    //         // Perform any additional copying if necessary
+    //     }
+    //     return *this;
+    // }
 };
-
 #endif

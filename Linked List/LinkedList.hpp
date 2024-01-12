@@ -24,11 +24,12 @@ private:
      * 
      */
     Node<T>* mpTail;
+    
     /**
      * @brief Size of the linked list
      * 
      */
-    unsigned int mSize;
+    int mSize;
 
     /**
      * @brief Created a Node for the value of @param
@@ -69,19 +70,20 @@ public:
     LinkedList(const LinkedList<T>&);
 
 /*~ ~ ~ Utility Functions ~ ~ ~*/ 
+
     /**
-     * @brief Get the Tail object
+     * @brief Get the Tail Object Value
      * 
-     * @return Node<T>* 
+     * @return object stored within the node BY VALUE
      */
-    Node<T>* get_tail();
+    T get_tail();
     
     /**
-     * @brief Get the head object
+     * @brief Get the head Object
      * 
-     * @return Node<T>* 
+     * @return object stored within the node BY VALUE
      */
-    Node<T>* get_head();
+    T get_head();
     
     /**
      * @brief Returns object at given position.
@@ -107,14 +109,19 @@ public:
      */
     void set(const int POS, const T VALUE);
     
-
-    void append(const T value);
+    /**
+     * @brief Pushes an object to the back of the linked list. 
+     * 
+     * @param VALUE object to be appended.
+     */
+    void append(const T VALUE);
 
     /**
-     * @brief 
+     * @brief Allows for insertion into the linked list at an index.
      * 
-     * @param POS 
-     * @param VALUE 
+     * @param POS Insert at an index
+     * @param VALUE object to be inserted at a position.
+     * 
      */
     void insert(const int POS, const T VALUE);
     
@@ -166,14 +173,21 @@ LinkedList<T>::LinkedList(){
     mpHead = nullptr;
     mpTail = nullptr;
 }
+
 template <class T>
-LinkedList<T>::~LinkedList(){
-    Node<T>* pCurrNode = new Node<T>;
-    while (pCurrNode != nullptr){
-        pCurrNode = mpHead;
-        mpHead = mpHead->pNext;
-        delete(pCurrNode);
+LinkedList<T>::~LinkedList() {
+    Node<T>* current = mpHead;
+    Node<T>* next;
+
+    while (current != nullptr) {
+        next = current->pNext;
+        delete current;                         // ERROR HERE???
+        current = next;
     }
+
+    mpHead = nullptr;
+    mpTail = nullptr;
+    mSize = 0;
 }
 template <class T>
 LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& OTHER){
@@ -193,31 +207,31 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& OTHER){
     return *this;
 }
 template <class T>
-Node<T>* LinkedList<T>::get_head(){
-    return mpHead;
+Node<T>* LinkedList<T>::MakeNodeForValue(T VALUE){
+    Node<T>* pCurrNode = new Node<T>;
+    pCurrNode->value = VALUE;
+    pCurrNode->pNext = nullptr;
+    pCurrNode->pPrev = nullptr;
+    mSize++;
+    return pCurrNode;
 }
 
 template <class T>
-Node<T>* LinkedList<T>::get_tail(){
-    return mpTail;
+T LinkedList<T>::get_head(){
+    return mpHead->value;
+}
+template <class T>
+T LinkedList<T>::get_tail(){
+    return mpTail->value;
 }
 
 template <class T>
 T LinkedList<T>::get(const int POS) const{
     Node<T>* pCurrNode = mpHead;
     if ((int)mSize <= 0 || mpHead == nullptr || (int)mSize <= (int)POS){
-        // throw std::out_of_range("ERROR");
         return -1;
     }
     else{
-        // for (int i = 0; i < mSize; i++){
-        //     if (i == POS){
-        //         return pCurrNode->value;
-        //     }
-        //     else{
-        //         pCurrNode = pCurrNode->pNext;
-        //     }
-        // }
         int counter = 0;
         while(true){
             if(counter == POS){
@@ -226,7 +240,7 @@ T LinkedList<T>::get(const int POS) const{
             if((pCurrNode->pNext == nullptr && counter != POS)|| (POS < 0 || POS <= counter) || (pCurrNode == nullptr)){
             // throw std::exception();
                 // throw std::out_of_range("OUT OF RANGE");
-            return -1;
+                return -1;
             }
             else{
                 pCurrNode = pCurrNode->pNext;
@@ -238,16 +252,6 @@ T LinkedList<T>::get(const int POS) const{
     return -1;
 }
 
-template <class T>
-Node<T>* LinkedList<T>::MakeNodeForValue(T VALUE){
-    Node<T>* pNewNode = new Node<T>;
-    pNewNode->value = VALUE;
-    pNewNode->pNext = nullptr;
-    pNewNode->pPrev = nullptr;
-    //iterate size
-    mSize++;
-    return pNewNode;
-}
 template <class T>
 void LinkedList<T>::fullprint(){
 const Node<T>* pCURR_NODE = mpHead;
@@ -282,54 +286,71 @@ void LinkedList<T>::set(const int POS, const T VALUE){
     }
     else{
         Node<T>* pCurrNode = mpHead;
-        int counter = 0;
-        while(counter < POS){
-            pCurrNode = pCurrNode->pNext;
-            counter += 1;
+        // int counter = 0;
+        // while(counter < POS){
+        //     pCurrNode = pCurrNode->pNext;
+        //     counter += 1;
+        // }
+        // pCurrNode->value = VALUE;
+        for (int counter = 0; counter < POS; ++counter) {  //This may be using Index rather than position.
+            if (pCurrNode == nullptr) {
+                // Handle the case where pCurrNode becomes null unexpectedly
+                return;
+            }
+        pCurrNode = pCurrNode->pNext;
         }
-        pCurrNode->value = VALUE;
+        if (pCurrNode != nullptr) {
+            pCurrNode->value = VALUE;
+        }
     }
 }
 
 template <class T>
 void LinkedList<T>::append(const T VALUE){
-    Node<T>* pNewNode = MakeNodeForValue(VALUE);
-    mpTail->pNext = pNewNode;                                           /// Seg Fault Here somehow
-    pNewNode->pPrev = mpTail;
-    //set tail
-    mpTail = pNewNode;
+    Node<T>* pCurrNode = MakeNodeForValue(VALUE);
+    // mpTail is null, meaning that mpHead must also be null
+    if((mpHead == nullptr)/*Null Linked list, Fine*/|| (mpTail == nullptr) /*Broken Linked List, Screwed*/){
+        mpHead = pCurrNode;
+        mpTail = pCurrNode;
+        // mSize++;
+        return;
+    }
+    else{ // It is a valid Linked List, therefore we can make certian assumtions about the data. The biggest one being that mpTail is no longer Null.
+        mpTail->pNext = pCurrNode;
+        pCurrNode->pPrev = mpTail;
+        mpTail = pCurrNode;
+        // mSize++;
+    }
 }
 template <class T>
 void LinkedList<T>::insert(const int POS, const T VALUE){
-    Node<T>* pNewNode = MakeNodeForValue(VALUE);
+    Node<T>* pCurrNode = MakeNodeForValue(VALUE);
         if(mpHead == nullptr) {
-            mpHead = pNewNode;
-            mpTail = pNewNode;
+            // Empty, insert as head
+            mpHead = pCurrNode;
+            mpTail = pCurrNode;
             return;
         }
-        else if(POS >= (int)mSize-1){
-            mpTail->pNext = pNewNode;
-            pNewNode->pPrev=mpTail;
-
-            mpTail = pNewNode;
+        else if(POS >= (int)mSize-1) { // Back Append
+            this->append(VALUE);
         }
-        else if( POS <= 0){
-            pNewNode->pNext = mpHead;
-            mpHead->pPrev = pNewNode;
+        else if( POS <= 0){ // Front Append
+            pCurrNode->pNext = mpHead;
+            mpHead->pPrev = pCurrNode;
 
-            mpHead = pNewNode;
+            mpHead = pCurrNode;
         }
         else{
             Node<T>* pCurrNode = mpHead;
             int counter = 0;
-            while(counter < POS){
+            while(counter < POS && pCurrNode != nullptr){
                 pCurrNode = pCurrNode->pNext;
                 counter++;
             }
-        pNewNode->pNext=            pCurrNode;
-        pNewNode->pPrev=            pCurrNode->pPrev;
-        pCurrNode->pPrev->pNext=    pNewNode;
-        pCurrNode->pPrev=           pNewNode;
+        pCurrNode->pNext=            pCurrNode;
+        pCurrNode->pPrev=            pCurrNode->pPrev;
+        pCurrNode->pPrev->pNext=    pCurrNode;
+        pCurrNode->pPrev=           pCurrNode;
         }
 }
 template <class T>
@@ -370,12 +391,12 @@ void LinkedList<T>::remove(const int POS){
             return;
         }
         // store pointer to current head
-        Node<T>* pNewNode = mpTail;
+        Node<T>* pCurrNode = mpTail;
         
         // advance head
 
         // if we're now pointing at nothing
-        if (pNewNode->pPrev == nullptr){
+        if (pCurrNode->pPrev == nullptr){
             //  set tail to also be null so it points to nothing
             mpHead = nullptr;
             mpTail = nullptr;
@@ -384,7 +405,7 @@ void LinkedList<T>::remove(const int POS){
 
         mpTail->pPrev->pNext = nullptr;
         mSize--;
-        delete pNewNode;
+        delete pCurrNode;
     }
      
     else {
@@ -420,7 +441,7 @@ void LinkedList<T>::remove(const int POS){
 }
 template <class T>
 bool LinkedList<T>::isEmpty(){
-    return true;
+    return ((mSize == 0) && (mpHead == nullptr && mpTail == nullptr));
 }
 template <class T>
 int LinkedList<T>::size(){
@@ -428,14 +449,17 @@ int LinkedList<T>::size(){
 }
 template <class T>
 int LinkedList<T>::find(const T VALUE){
-
-    Node<T>* pNewNode = MakeNodeForValue(VALUE);
+    Node<T>* pCurrNode = MakeNodeForValue(VALUE);
     for (unsigned int i = 0; i < mSize; i++){
-        if (pNewNode->value == VALUE){
+        if (pCurrNode == nullptr) {
+            // Handle the case where pCurrNode becomes null unexpectedly
+            return -1;
+        }
+        if (pCurrNode->value == VALUE){
             return i;
         }
         else{
-            pNewNode = pNewNode->pNext;
+            pCurrNode = pCurrNode->pNext;
         }
     }
     return -1;

@@ -1,6 +1,8 @@
 {
     "cmake.sourceDirectory": "C:/CSCI Git Zone/Templated Linked List/Linked List",
     "files.associations": {
-        "string": "cpp"
+        "string": "cpp",
+        "*.tcc": "cpp",
+        "format": "cpp"
     }
 }
