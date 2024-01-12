@@ -25,6 +25,7 @@ test/CMakeFiles/ExampleTests.dir/ExampleTests.cpp.obj: C:/CSCI\ Git\ Zone/Templa
   C:/CSCI\ Git\ Zone/Templated\ Linked\ List/Linked\ List/googletest/googletest/include/gtest/internal/gtest-port.h \
   C:/CSCI\ Git\ Zone/Templated\ Linked\ List/Linked\ List/googletest/googletest/include/gtest/internal/gtest-string.h \
   C:/CSCI\ Git\ Zone/Templated\ Linked\ List/Linked\ List/googletest/googletest/include/gtest/internal/gtest-type-util.h \
+  C:/CSCI\ Git\ Zone/Templated\ Linked\ List/Linked\ List/test/TheTestBrick.hpp \
   C:/msys64/ucrt64/include/_mingw.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
   C:/msys64/ucrt64/include/_mingw_off_t.h \
@@ -329,6 +330,10 @@ C:/msys64/ucrt64/include/c++/13.1.0/cstdio:
 
 C:/CSCI\ Git\ Zone/Templated\ Linked\ List/Linked\ List/googletest/googletest/include/gtest/internal/gtest-type-util.h:
 
+C:/msys64/ucrt64/include/c++/13.1.0/bits/basic_string.h:
+
+C:/CSCI\ Git\ Zone/Templated\ Linked\ List/Linked\ List/test/TheTestBrick.hpp:
+
 C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/error_constants.h:
 
 C:/msys64/ucrt64/include/_mingw.h:
@@ -370,8 +375,6 @@ C:/msys64/ucrt64/include/c++/13.1.0/bits/functional_hash.h:
 C:/msys64/ucrt64/include/c++/13.1.0/memory:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/basic_ios.tcc:
-
-C:/msys64/ucrt64/include/c++/13.1.0/bits/basic_string.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_algobase.h:
 
