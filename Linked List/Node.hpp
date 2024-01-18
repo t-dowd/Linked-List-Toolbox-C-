@@ -2,6 +2,12 @@
 #define NODE_HPP
 
 
+/*
+    Templated Linked List Project Written in C++
+    Author: Thomas Dowd
+*/
+
+
 /**
  * @brief A single element of a linked list or can be implemented into any other another similar function
  * 

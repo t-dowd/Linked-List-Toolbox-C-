@@ -5,7 +5,7 @@ Overview:
     This project provides a templated implementation of a linked list in C++. Derived from academic coursework and extensively customized for enhanced functionality.
 
 Refrences: 
-    [YoutubeLinkHere] : taught setup for GTest 
+    N/A
 
 Features
     Dynamic memory allocation for nodes
@@ -20,16 +20,15 @@ Operations:
     ~ Other utility functions
 Requirements
     C++ Compiler
-    Google Test (for testing) (Optional)
+    Google Test (for testing) (Optional) (Self provided)
 
 Under Construction:
     - Circle Linked List support.
     - Min() and Max(): Proper implementation
-    - Append(): memory leak + lack of Resiliance + no comments
     - Find(): requires more safeguards
     - Fullprint(): more intuitive
     - _RepairMan(): if an error or a flaw is detected, it will catch the error and attempt to find where the problem is, and if all memory is recoverable, then it recovers it.
-    - TestBrick():
+    - TestBrick(): Moved to individual Project
 
 Contributing
 Contributions are welcome! Please open an issue or submit a pull request with any improvements or bug fixes.

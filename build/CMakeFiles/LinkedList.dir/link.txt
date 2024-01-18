@@ -1,2 +1,0 @@
-C:/msys64/ucrt64/bin/ar.exe qc libLinkedList.a CMakeFiles/LinkedList.dir/main.cpp.obj
-C:/msys64/ucrt64/bin/ranlib.exe libLinkedList.a

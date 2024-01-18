@@ -5,9 +5,14 @@
 #include <exception>
 #include <iostream>
 #include "Node.hpp"
-// Gtest New Stuff
 #include <sstream>
 // #include "gtest/gtest.h"
+
+
+/*
+    Templated Linked List Project Written in C++
+    Author: Thomas Dowd
+*/
 
 template <class T>
 class LinkedList{
@@ -26,19 +31,20 @@ private:
     Node<T>* mpTail;
     
     /**
-     * @brief Size of the linked list
+     * @brief Number of objects stored in container
      * 
      */
     int mSize;
 
     /**
-     * @brief Created a Node for the value of @param
+     * @brief Create a Node for a passed object's value
      * 
      * @param VALUE The Intended Value 
      * @return Node<T>* 
      */
     Node<T>* MakeNodeForValue(T VALUE);
 public: 
+
 /*~ ~ ~ Constructors ~ ~ ~*/ 
     /**
      * @brief Construct a new Linked List object
@@ -130,22 +136,7 @@ public:
      * 
      * @param POS 
      */
-    void remove(const int POS);
-        
-    /**
-     * @brief Finds max value in list.
-     * 
-     * @return Max out of list
-     */
-    T max(){};
-    
-    /**
-     * @brief Finds min value in list.
-     * 
-     * @return Min out of list
-     */
-    T min();
-    
+    void remove(const int POS); 
     /**
      * @brief prints Full Linked list seperated by spaces
      * 
@@ -167,6 +158,7 @@ public:
      */
     int size();
 };
+
 template <class T>
 LinkedList<T>::LinkedList(){
     mSize = 0;
@@ -177,20 +169,19 @@ LinkedList<T>::LinkedList(){
 template <class T>
 LinkedList<T>::~LinkedList() {
     Node<T>* current = mpHead;
-    Node<T>* next;
-
+    // Node<T>* current = MakeNodeForValue(mpHead->value);
     while (current != nullptr) {
+        Node<T>* next;
         next = current->pNext;
         delete current;                         // ERROR HERE???
         current = next;
     }
-
     mpHead = nullptr;
     mpTail = nullptr;
     mSize = 0;
 }
 template <class T>
-LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& OTHER){
+LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& OTHER){ // Needs Redux
     //delete everything in list
     while(mSize > 0){
         remove(0);
@@ -256,7 +247,7 @@ template <class T>
 void LinkedList<T>::fullprint(){
 const Node<T>* pCURR_NODE = mpHead;
     std::cout << "#  Printing    #" << 
-        "\n[";
+        "\n -->";
     if (pCURR_NODE == nullptr){
             std::cout << "NULLPNTRHEAD";
             return;
@@ -265,14 +256,14 @@ const Node<T>* pCURR_NODE = mpHead;
     // advance through list counting number of jumps and continue until position found or at end
     while(true){
         if (pCURR_NODE->pNext == nullptr || pCURR_NODE == nullptr){
-            std::cout << " " << 
+            std::cout << " | " << 
                 pCURR_NODE->value <<
-                "]"<<
+                " |"<<
                 std::endl;
             return;
         }
         else{
-            std::cout << " " <<
+            std::cout << " | " <<
                 pCURR_NODE->value; 
             pCURR_NODE = pCURR_NODE->pNext;
             counter += 1;
