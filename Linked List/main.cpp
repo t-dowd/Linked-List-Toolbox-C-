@@ -17,6 +17,4 @@ int main(){
     GQ->append(12345);
     GQ->fullprint();
     delete GQ;
-
-    std::cout<<"you've successfully ran main" <<std::endl;
 }
