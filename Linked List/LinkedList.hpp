@@ -31,7 +31,7 @@ private:
     Node<T>* mpTail;
     
     /**
-     * @brief Number of objects stored in container
+  * @brief Number of objects stored in container
      * 
      */
     int mSize;
