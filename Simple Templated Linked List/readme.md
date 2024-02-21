@@ -5,7 +5,7 @@
 This project provides a templated implementation of a linked list in C++. Derived from academic coursework and extensively customized for enhanced functionality.
 
 ## Refrences: 
-    N/A
+N/A
 
 ## Features
 - Dynamic memory allocation for nodes
