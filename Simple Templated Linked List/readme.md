@@ -2,7 +2,7 @@
 ### By: Thomas Dowd
 
 ## Overview:
-    This project provides a templated implementation of a linked list in C++. Derived from academic coursework and extensively customized for enhanced functionality.
+This project provides a templated implementation of a linked list in C++. Derived from academic coursework and extensively customized for enhanced functionality.
 
 ## Refrences: 
     N/A
@@ -19,7 +19,7 @@
 - Fullprint: Print the entire linked list
 - Other utility functions
 ## Requirements
-    C++ Compiler
+- C++ Compiler
 
 ## Under Construction:
 - Circle Linked List support.
