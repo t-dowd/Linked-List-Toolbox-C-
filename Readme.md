@@ -1,11 +1,16 @@
-## Linked List Project
-# by: Thomas Dowd
+# Linked List Project
 
-Based on Various assignments requring dynamic memory storage in C++
+## by: Thomas Dowd
 
-1. Templated Linked List
-> - A simple, yet resiliant form of the linked list. It was the inital attempt meaning it is a bit rough around the edges. though will get the job done. 
->> Features
-* Dynamic memory allocation for nodes.
-* Open object support. 
-* Variety of functions. 
+### Overview
+
+This project is based on various assignments requiring dynamic memory storage in C++.
+
+### 1. Templated Linked List
+
+A simple, yet resilient form of the linked list. It was the initial attempt, meaning it is a bit rough around the edges, though it will get the job done.
+
+#### Features:
+- Dynamic memory allocation for nodes.
+- Open object support.
+- Variety of functions.
