@@ -21,11 +21,6 @@ int main(){
     TestLL.append(new Derived<int>(1));
     TestLL.append(new Derived<std::string>("hello"));
     
-    // Derived<int>* james = new Derived<int>(10);
-    // std::cout << james->get() << std::endl;
-    // std::cout << TestLL.LLget();
-    
-    // std::cout << TestLL.get() << std::endl;
     TestLL.view();  
     std::cout<< "Ran Main Successfully";
 }

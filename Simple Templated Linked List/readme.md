@@ -1,4 +1,4 @@
-# Templated Linked List Project Written in C++
+# Linked List Toolkit Project
 ### By: Thomas Dowd
 
 ## Overview:
