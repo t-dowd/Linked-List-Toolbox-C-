@@ -5,11 +5,8 @@
 #include <sstream>
 
 int main(){
-    // LinkedList <BaseObject*> GQ ;
-
-    // objectList.push_back(new IntegerObject(42));
-    // objectList.push_back(new StringObject("Hello, World!"));
-    // Free Store ~ ~ ~ ~
+    
+    // Simple 
     LinkedList <int>* GQ = new LinkedList<int>();
     GQ->append(1);
     GQ->append(12345);
